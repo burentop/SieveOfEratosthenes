@@ -11,32 +11,41 @@
 int main()
 {
     vector<int> master_list;
-    int user_max;
+    int user_input;
+    int list_max;
+    int found_primes = 0;
     
-    cout << "Please enter a number to be the upper max: ";
-    cin >> user_max;
+    cout << "Please enter a number; we will then find that many prime numbers: ";
+    cin >> user_input;
+    list_max = user_input * 6;
     cout << "\n";
     
     master_list.push_back(0);
     master_list.push_back(0);
     
-    for (int i = 2; i <= user_max; ++i) {
+    
+    for (int i = 2; i <= list_max; ++i) {
         master_list.push_back(1);
     }
-    
-    for (int i = 2; i <= sqrt(user_max); ++i) {
+        
+    for (int i = 2; i <= sqrt(list_max); ++i) {
         if (master_list[i] == 1) {
-            for (int j = i * 2; j <= user_max; j+=i) {
+            for (int j = i * 2; j <= list_max; j+=i) {
                 master_list[j] = 0;
             }
         }
     }
     
-    cout << "Prime numbers found up to your max: \n";
-    for (int i = 0; i < master_list.size(); ++i) {
+    
+    
+    cout << "The first " << user_input << " prime numbers are: \n";
+    int i = 0;
+    while (found_primes < user_input) {
         if (master_list[i] == 1) {
             cout << i << " ";
+            ++found_primes;
         }
+        ++i;
     }
     cout << "\n";
     
